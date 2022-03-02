@@ -44,3 +44,30 @@ fetch(heroURL, {
             heroList.appendChild(newHero)
         }
     })
+
+
+// add a new hero
+
+let heroForm = document.querySelector('#add_hero')
+let newURL = 'api/heroes/new'
+document.addEventListener('submit', function (event) {
+    event.preventDefault()
+    console.log(event.target)
+    formData = new FormData(heroForm)
+    fetch(newURL, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'X-Request-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrftoken,
+        },
+        body: formData
+    })
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+})

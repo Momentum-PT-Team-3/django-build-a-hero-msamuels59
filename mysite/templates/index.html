@@ -13,10 +13,18 @@
 </head>
 
 <body>
-    <h1>Henlo World
-    </h1>
+    <h1>Hero Builder</h1>
     <div id="hero_list">
 
+    </div>
+
+    <div>
+        <h1>Add hero</h1>
+        <form id="add_hero" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ hero_form.as_p}}
+            <button type="submit">Create Hero</button>
+        </form>    
     </div>
 </body>
 
