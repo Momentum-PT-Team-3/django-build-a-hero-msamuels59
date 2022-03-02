@@ -22,24 +22,25 @@ const csrftoken = getCookie('csrftoken');
 // build list on homepage
 
 let heroList = document.querySelector('#hero_list');
-let heroURL = 'heroes'
+let heroURL = 'api/heroes'
 
 fetch(heroURL, {
     method: 'GET',
-    cerdentials: 'same-origin',
+    credentials: 'same-origin',
     headers: {
         'Accept': 'application/json',
-        'X-Request-With': 'XMLHttpRequest',
-        'X-SCRFToken': csrftoken,
+        'X-Reequest-With': 'XMLHttpRequest',
+        'X-CSRFToken': csrftoken,
     },
 })
     .then(response => {
         return response.json()
     })
     .then(heroArray => {
+        console.log(heroArray)
         for (let hero of heroArray) {
-            let heroName = document.createElement('ol')
-            heroName.innerText = `Name: ${hero.name} | Alias: ${hero.alias}`
-            heroList.appendChild(heroName)
+            let newHero = document.createElement('ol')
+            newHero.innerText = ` Name: ${hero.name} | Alias: ${hero.alias}`
+            heroList.appendChild(newHero)
         }
     })
