@@ -22,7 +22,7 @@ const csrftoken = getCookie('csrftoken');
 // build list on homepage
 
 let heroList = document.querySelector('#hero_list');
-let heroURL = 'api/heroes'
+let heroURL = 'api/heroes/'
 
 fetch(heroURL, {
     method: 'GET',
@@ -49,20 +49,22 @@ fetch(heroURL, {
 // add a new hero
 
 let heroForm = document.querySelector('#add_hero')
-let newURL = 'api/heroes/new'
+
+
 document.addEventListener('submit', function (event) {
     event.preventDefault()
-    console.log(event.target)
+    // console.log(event.target)
     formData = new FormData(heroForm)
-    fetch(newURL, {
+    fetch(heroURL, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Accept': 'application/json',
-            'X-Request-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json',
+            'X-Reequest-With': 'XMLHttpRequest',
             'X-CSRFToken': csrftoken,
         },
-        body: formData
+        body: JSON.stringify(Object.fromEntries(formData))
     })
         .then(response => {
             return response.json()
