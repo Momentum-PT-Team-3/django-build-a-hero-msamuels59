@@ -96,10 +96,9 @@ function removeHero(id){
         console.log('removed');
     })
     .catch(err => {
-        console.error(err)
-    });
+        console.error(err);
+    })
+    .then(window.location.reload())
 }
-
- 
 
 // click hero
