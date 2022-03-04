@@ -21,7 +21,7 @@ const csrftoken = getCookie('csrftoken');
 
 // build list on homepage
 
-let heroList = document.querySelector('#hero_list');
+var heroList = document.querySelector('#hero_list');
 let heroURL = 'api/heroes/'
 
 fetch(heroURL, {
@@ -39,21 +39,26 @@ fetch(heroURL, {
     .then(heroArray => {
         console.log(heroArray)
         for (let hero of heroArray) {
-            let newHero = document.createElement('ol')
-            newHero.innerText = ` Name: ${hero.name} | Alias: ${hero.alias}`
-            heroList.appendChild(newHero)
+            let newHero = document.createElement('ol');
+            newHero.setAttribute('onclick', 'alert("success");');
+            newHero.innerText = ` Name: ${hero.name} | Alias: ${hero.alias}`;
+            heroList.appendChild(newHero);
+            let btn = document.createElement('button');
+            btn.innerHTML = "Delete";
+            btn.onclick = function () {
+                removeHero(`${hero.id}`)
+            }
+            heroList.appendChild(btn);
+
         }
     })
 
-
 // add a new hero
 
-let heroForm = document.querySelector('#add_hero')
-
+var heroForm = document.querySelector('#add_hero')
 
 document.addEventListener('submit', function (event) {
-    event.preventDefault()
-    // console.log(event.target)
+
     formData = new FormData(heroForm)
     fetch(heroURL, {
         method: 'POST',
@@ -73,3 +78,28 @@ document.addEventListener('submit', function (event) {
             console.log(data)
         })
 })
+
+
+// delete hero 
+function removeHero(id){
+    fetch(heroURL+id, {
+        method: 'DELETE',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Reequest-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrftoken,
+        },
+    })
+    .then(() => {
+        console.log('removed');
+    })
+    .catch(err => {
+        console.error(err)
+    });
+}
+
+ 
+
+// click hero
