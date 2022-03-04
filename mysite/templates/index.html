@@ -9,23 +9,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='{% static "scripts/main.js" %}' defer></script>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Build A Hero</title>
 </head>
 
 <body>
-    <h1>Hero Builder</h1>
-    <div id="hero_list">
+    <nav class="pa3 pa4-ns">
+        <h1 class="link dim black b f1 f-headline-ns tc db mb3 mb4-ns">The Superest of Heroes</h1>
+        <div class="tc pb3">
+          <a class="link dim gray f6 f5-ns dib mr3" href="" title="Home">Home</a>
+        </div>
+      </nav>
+    <!-- <div>
+        <ol id="hero_list" class="list-group"></ol>
+    </div> -->
+    <div class="pa3 pa5-ns">
+        <ul class="list pl0 measure center bg-transparent w-100" id="hero_list">
+        </ul>
+      </div>
 
-    </div>
-
-    <div>
-        <h1>Add hero</h1>
-        <form id="add_hero" method="POST" enctype="multipart/form-data">
+    <main class="pa4 black-80">
+        <form class="measure center pa2 input-reset ba bg-transparent w-100" id="add_hero">
+          <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+            <legend class="f4 fw6 ph0 mh0">Add Hero</legend>
+            <div class="mt3">
             {% csrf_token %}
             {{ hero_form.as_p}}
-            <button type="submit">Create Hero</button>
-        </form>    
-    </div>
+          </fieldset>
+          <div class="">
+            <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Create Hero">
+          </div>
+        </form>
+      </main>
 </body>
-
+<footer class="pv4 ph3 ph5-m ph6-l mid-gray">
+    <small class="f6 db tc">© 2022 <b class="ttu">Mike Made Anoterh Site, VVVLLC</b>., Lacking Liability Since '91</small>
+    <div class="tc mt3">
+    </div>
+  </footer>
 </html>

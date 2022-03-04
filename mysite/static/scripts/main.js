@@ -1,5 +1,7 @@
 console.log('js loaded')
 // show that the js is connected
+// modal stuff
+
 
 // from Django Docs 
 function getCookie(name) {
@@ -39,17 +41,36 @@ fetch(heroURL, {
     .then(heroArray => {
         console.log(heroArray)
         for (let hero of heroArray) {
-            let newHero = document.createElement('ol');
-            newHero.setAttribute('onclick', 'alert("success");');
+            let newHero = document.createElement('a');
+            newHero.setAttribute('href', heroURL+`${hero.id}`);
+            newHero.classList.add('f4');
+            newHero.classList.add('ph3');
+            // newHero.classList.add('pv');
+            newHero.classList.add('pa1');
+            newHero.classList.add('no-underline');
+            newHero.classList.add('bg-animate');
+            newHero.classList.add('hover-bg-light-blue');
+            newHero.classList.add('black');
+            newHero.classList.add('ba');
+            newHero.classList.add('bg-transparent');
+            newHero.classList.add('bg-transparent');
+            newHero.classList.add('bg-transparent');
             newHero.innerText = ` Name: ${hero.name} | Alias: ${hero.alias}`;
             heroList.appendChild(newHero);
             let btn = document.createElement('button');
+            // btn.classList.add('b');
+            btn.classList.add('ph2');
+            btn.classList.add('pv2');
+            btn.classList.add('ba');
+            btn.classList.add('f6');
+            btn.classList.add('bg-transparent');
             btn.innerHTML = "Delete";
             btn.onclick = function () {
                 removeHero(`${hero.id}`)
             }
             heroList.appendChild(btn);
-
+            let brk = document.createElement('br');
+            heroList.appendChild(brk);
         }
     })
 
