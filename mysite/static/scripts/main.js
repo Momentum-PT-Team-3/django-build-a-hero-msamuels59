@@ -41,11 +41,11 @@ fetch(heroURL, {
     .then(heroArray => {
         console.log(heroArray)
         for (let hero of heroArray) {
-            let newHero = document.createElement('button');
+            let newHero = document.createElement('a');
             newHero.setAttribute('href', heroURL+`${hero.id}`);
             newHero.classList.add('f4');
             newHero.classList.add('ph3');
-            newHero.classList.add('pv');
+            // newHero.classList.add('pv');
             newHero.classList.add('pa1');
             newHero.classList.add('no-underline');
             newHero.classList.add('bg-animate');
@@ -55,7 +55,7 @@ fetch(heroURL, {
             newHero.classList.add('bg-transparent');
             newHero.classList.add('bg-transparent');
             newHero.classList.add('bg-transparent');
-            newHero.innerText = ` Name: ${hero.name} | Alias: ${hero.alias}`;
+            newHero.innerText = `Name: ${hero.name} | Alias: ${hero.alias}`;
             heroList.appendChild(newHero);
             let btn = document.createElement('button');
             // btn.classList.add('b');
