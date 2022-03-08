@@ -29,7 +29,7 @@
         </ul>
       </div>
       
-    <main class="pa4 black-80">
+    <!-- <main class="pa4 black-80">
         <form class="measure center pa2 input-reset ba bg-transparent w-100" id="add_hero">
           <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
             <legend class="f4 fw6 ph0 mh0">Add Hero</legend>
@@ -48,7 +48,43 @@
           <p>Modal stuff</p>>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
+      </div> -->
+      <div id="new_hero_modal" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            <main class="pa4 black-80">
+              <form class="measure center pa2 input-reset ba bg-transparent w-100" id="add_hero">
+                <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                  <legend class="f4 fw6 ph0 mh0">Add Hero</legend>
+                  <div class="mt3">
+                  {% csrf_token %}
+                  {{ hero_form.as_p}}
+                </fieldset>
+                <div class="">
+                  <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Create Hero">
+                </div>
+              </form>
+            </main>
+            <div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <p>Modal stuff</p>>
+              </div>
+              <button class="modal-close is-large" aria-label="close"></button>
+            </div>
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      <div class="list pl0 measure center bg-transparent w-100">
+      <button class="js-modal-trigger b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" data-target="new_hero_modal">
+        New Hero
+      </button>
+      </div>
+
 </body>
 <footer class="pv4 ph3 ph5-m ph6-l mid-gray">
     <small class="f6 db tc">© 2022 <b class="ttu">Mike Made Another Site, VVVLLC</b>., Lacking Liability Since '91</small>
